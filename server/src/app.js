@@ -1,17 +1,17 @@
-
 const express = require('express')
-const cors = require('cors')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const morgan = require('morgan')
 
 const app = express()
-
-app.use(morgan('combined'))
+app.use(morgan('combind'))
 app.use(bodyParser.json())
 app.use(cors())
 
 app.get('/req', (req, res) => {
-  res.send('Hello ghng World!')
+  res.send({
+    message: 'hello world i am coming'
+  })
 })
 
 app.listen(process.env.PORT || 8081)
