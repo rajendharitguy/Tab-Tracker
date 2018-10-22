@@ -6,9 +6,9 @@
           <v-flex xs12 sm8 md4>
             <v-card class="elevation-12">
               <v-toolbar dark color="primary">
-                <v-toolbar-title>Registration</v-toolbar-title>
+                <v-toolbar-title>Login</v-toolbar-title>
               </v-toolbar>
-              <v-card-text>
+                <v-card-text>
                 <v-alert v-model='alert' v-html="error" dismissible outline type="warning"></v-alert>
                 <v-form>
                   <v-text-field name="email" label="email" type="email" v-model="email"></v-text-field>
@@ -17,7 +17,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn  @click="register" color="primary">Register</v-btn>
+                <v-btn  @click="login" color="primary">Log in</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -26,39 +26,35 @@
     </v-content>
   </v-app>
 </template>
+
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
 export default {
-  name: 'Register',
+  name: 'Login',
   data () {
     return {
       email: 'we@ert.gdt',
       password: 'eeeeeee',
-      error: '',
+      error: null,
       alert: false
     }
   },
   methods: {
-    async register () {
-      this.error = null
+    async login () {
       this.alert = false
-
+      this.error = null
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
-        console.log(`welcome ${this.email}`)
+        console.log(`welcome back ${this.email}`)
       } catch (error) {
         this.error = error.response.data.error
         this.alert = true
+        console.log(error)
       }
     }
   }
 }
 </script>
-<style scoped>
-.err{
-  color:red;
-}
-</style>

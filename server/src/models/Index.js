@@ -1,12 +1,11 @@
-// Inspired by : https://gist.github.com/ihavenoidea14/0dab8b461c057c427829fdc99bfb6743
-
-const config = require('../config/config')
 const Sequelize = require('sequelize')
-var force
+const config = require('../config/config')
+
+// Face, meet desk. Sequelize models and Webpack do not play nicely
 let models = {};
 
 (function (config) {
-  if (Object.keys(models).length && !force) {
+  if (Object.keys(models).length) {
     return models
   }
 
@@ -16,7 +15,6 @@ let models = {};
     config.db.password,
     config.db.options
   )
-
   // Importing each module for now, can change to readDirSync and require models dynamically
   let modules = [
     require('./User.js')

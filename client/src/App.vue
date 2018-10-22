@@ -1,13 +1,23 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
-    <router-view/>
+   <v-app>
+    <Header />
+    <main>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </main>
+    </v-app>
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Header
+  }
 }
 </script>
 
@@ -19,5 +29,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+a{
+  text-decoration: none;
 }
 </style>

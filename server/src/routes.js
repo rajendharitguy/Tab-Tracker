@@ -6,4 +6,8 @@ module.exports = (app) => {
     AuthPol.register,
     auth.register
   )
+
+  app.post('/login',
+    auth.login
+  )
 }
