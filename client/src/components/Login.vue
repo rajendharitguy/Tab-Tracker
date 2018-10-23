@@ -44,10 +44,12 @@ export default {
       this.alert = false
       this.error = null
       try {
-        await AuthenticationService.login({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
         console.log(`welcome back ${this.email}`)
       } catch (error) {
         this.error = error.response.data.error

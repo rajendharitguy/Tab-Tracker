@@ -7,11 +7,18 @@
       </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn flat dark to='/login'>
+      <v-btn v-if="!$store.state.isUserLoggedIn" flat dark :to="{
+        name: 'Login'
+        }">
           Login
       </v-btn>
-      <v-btn block dark to='/register'>
+      <v-btn v-if="!$store.state.isUserLoggedIn" block dark :to="{
+        name: 'Register'
+        }">
           Sign Up
+      </v-btn>
+      <v-btn v-if="$store.state.isUserLoggedIn" block dark @click="logout">
+          Sign Out
       </v-btn>
     </v-toolbar-items>
   </v-toolbar>
@@ -19,18 +26,22 @@
 
 <script>
 export default {
-  name: 'Header',
-  data () {
-    return {
+  methods: {
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.$router.push({
+        name: 'HelloWorld'
+      })
     }
   }
 }
 </script>
 <style scoped>
-a{
-  color:lightcyan;
+a {
+  color: lightcyan;
 }
-h1{
-  font-weight:normal;
+h1 {
+  font-weight: normal;
 }
 </style>
