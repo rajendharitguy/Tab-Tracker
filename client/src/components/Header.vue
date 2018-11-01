@@ -4,20 +4,29 @@
       <router-link to='/'>
         <h1>Tab-Tracker</h1>
        </router-link>
-      </v-toolbar-title>
-    <v-spacer></v-spacer>
+    </v-toolbar-title>
     <v-toolbar-items>
-      <v-btn v-if="!$store.state.isUserLoggedIn" flat dark :to="{
+     <v-btn flat dark :to="{
+        name: 'Songs'
+        }">
+          Browse
+      </v-btn>
+    </v-toolbar-items>
+    <v-spacer></v-spacer>
+    <v-toolbar-items v-if="!$store.state.isUserLoggedIn">
+      <v-btn flat dark :to="{
         name: 'Login'
         }">
           Login
       </v-btn>
-      <v-btn v-if="!$store.state.isUserLoggedIn" block dark :to="{
+      <v-btn block dark :to="{
         name: 'Register'
         }">
           Sign Up
       </v-btn>
-      <v-btn v-if="$store.state.isUserLoggedIn" block dark @click="logout">
+    </v-toolbar-items>
+    <v-toolbar-items v-if="$store.state.isUserLoggedIn">
+      <v-btn block dark @click="logout">
           Sign Out
       </v-btn>
     </v-toolbar-items>

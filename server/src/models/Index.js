@@ -17,7 +17,8 @@ let models = {};
   )
   // Importing each module for now, can change to readDirSync and require models dynamically
   let modules = [
-    require('./User.js')
+    require('./User.js'),
+    require('./Song.js')
   ]
 
   modules.forEach((module) => {

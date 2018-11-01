@@ -8,10 +8,15 @@ import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import { sync } from 'vuex-router-sync'
 import store from './store/store'
+import Panel from '@/components/Panel'
 
 Vue.config.productionTip = false
 
 Vue.use(Vuetify)
+
+Vue.component(
+  'panel', Panel
+)
 
 sync(store, router)
 /* eslint-disable no-new */
