@@ -7,6 +7,7 @@ Tools i used
 
 1. vue js
 2. axios --takes care of http requests.
+3. loadash - load the database after a while user typed in search panel
 
   ::: BACK END :::
 

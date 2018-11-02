@@ -1,9 +1,7 @@
 <template>
  <v-container>
-  <v-layout row wrap>
    <song-search />
    <songs-panel />
-  </v-layout>
  </v-container>
 </template>
 
@@ -23,7 +21,7 @@ export default {
       songs: []
     }
   },
-  async created () {
+  async mounted () {
     this.songs = (await FetchingSongs.index()).data
   }
 }

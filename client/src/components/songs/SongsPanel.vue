@@ -10,8 +10,8 @@
    <br>
    <div v-for="song in songs" :key="song.id">
       <v-card color="purple" class="white--text">
-        <v-layout xs12 align-center justify-center row fill-height>
-          <v-flex xs12 sm7>
+        <v-layout row wrap align-center>
+          <v-flex xs12 sm7 style="order:2">
               <div class="ma-3">
                 <div class="headline" style="border-bottom:2px solid red">{{song.title}}</div>
                 <div class="subheading pt-3 text-xs-left"><span class="textback">Artist:</span>  {{song.artist}}</div>
@@ -19,12 +19,12 @@
                 <v-btn :to="{name:'ViewSong',params:{songId:song.id}}">view</v-btn>
               </div>
           </v-flex>
-          <v-flex xs12 sm5>
-            <v-avatar size=170px>
+          <v-flex xs12 sm5 style="order:1">
+            <v-avatar size=100% tile
+            class="pl-auto">
               <v-img
               :src="song.imageUrl"
               :lazy-src="`https://picsum.photos/10/6?image=${5 + 10}`"
-              class="mr-2"
               >
               </v-img>
             </v-avatar>
@@ -45,8 +45,13 @@ export default {
       songs: []
     }
   },
-  async created () {
-    this.songs = (await FetchingSongs.index()).data
+  watch: {
+    '$route.query.search': {
+      immediate: true,
+      async handler (value) {
+        this.songs = (await FetchingSongs.index(value)).data
+      }
+    }
   }
 }
 </script>
